@@ -35,7 +35,7 @@
 - (IBAction)presentButtonClicked:(UIButton *)sender
 {
     NSArray *titlesArr = @[@"Cancel",@"Red",@"Blue",@"Orange"];
-    HJPresentListView *presentListView = [[HJPresentListView alloc] initWithFrame:KeyWindow.bounds Titles:titlesArr ColorStyle:HJNomal];
+    HJPresentListView *presentListView = [[HJPresentListView alloc] initWithFrame:KeyWindow.bounds Titles:titlesArr ColorStyle:HJOrange];
     presentListView.delegate = self;
     [KeyWindow addSubview:presentListView];
 }
