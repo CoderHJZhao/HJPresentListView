@@ -27,4 +27,8 @@ typedef enum {
 
 - (instancetype)initWithFrame:(CGRect)frame Titles:(NSArray *)titles ColorStyle:(HJColorStyle)colorStyle;
 
+- (void)show;
+
+- (void)showInView:(UIView *)view;
+
 @end

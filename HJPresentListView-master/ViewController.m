@@ -11,33 +11,43 @@
 
 
 // 程序主窗体
-#define KeyWindow [UIApplication sharedApplication].keyWindow
+#define KeyWindow [UIApplication sharedApplication].windows.lastObject
 
 @interface ViewController () <HJPresentListViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *presentButton;
 
+@property (nonatomic, strong) HJPresentListView *presentListView;
+
+
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+- (HJPresentListView *)presentListView
+{
+    if (!_presentListView) {
+        NSArray *titlesArr = @[@"Cancel",@"Red",@"Blue",@"Orange"];
+        _presentListView = [[HJPresentListView alloc] initWithFrame:KeyWindow.bounds Titles:titlesArr ColorStyle:HJOrange];
+        _presentListView.delegate = self;
+    }
+    return _presentListView;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
 }
+
 
 /** 点击事件*/
 - (IBAction)presentButtonClicked:(UIButton *)sender
 {
-    NSArray *titlesArr = @[@"Cancel",@"Red",@"Blue",@"Orange"];
-    HJPresentListView *presentListView = [[HJPresentListView alloc] initWithFrame:KeyWindow.bounds Titles:titlesArr ColorStyle:HJOrange];
-    presentListView.delegate = self;
-    [KeyWindow addSubview:presentListView];
+
+    [self.presentListView show];
+
+    
 }
 
 

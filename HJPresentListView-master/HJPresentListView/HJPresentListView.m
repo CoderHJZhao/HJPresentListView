@@ -10,7 +10,7 @@
 #import "UIView+Extension.h"
 
 // 程序主窗体
-#define KeyWindow [UIApplication sharedApplication].keyWindow
+#define KeyWindow [UIApplication sharedApplication].windows.lastObject
 #define IphoneWidth [UIScreen mainScreen].bounds.size.width
 #define IphoneHeight [UIScreen mainScreen].bounds.size.height
 
@@ -45,14 +45,11 @@ static NSInteger const TitleFont = 16;
 - (void)createViewWithTitles:(NSArray *)titles ColorStyle:(HJColorStyle)colorStyle
 {
     //遮罩层
-    self.coverControl = [[UIControl alloc] initWithFrame:KeyWindow.frame];
+    self.coverControl = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, IphoneWidth, IphoneHeight)];
     [self.coverControl addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
     self.coverControl.backgroundColor = [UIColor blackColor];
     self.coverControl.alpha = 0;
     [self addSubview:self.coverControl];
-    [UIView animateWithDuration:0.25 animations:^{
-        self.coverControl.alpha = 0.4;
-    }];
     
     //按钮背景View
     CGFloat buttonMargin = titles.count>2?(titles.count-2):0;
@@ -75,7 +72,7 @@ static NSInteger const TitleFont = 16;
     {
         self.contentView.backgroundColor = [UIColor whiteColor];
     }
-//    MFLog(@"%@",self.contentView.height);
+    
     [self addSubview:self.contentView];
     
     //创建按钮
@@ -115,9 +112,23 @@ static NSInteger const TitleFont = 16;
 
     }
     
-    //给背景View加动画
+}
+
+- (void)show
+{
+    [KeyWindow addSubview:self];
     [UIView animateWithDuration:0.25 animations:^{
         self.contentView.y = IphoneHeight-self.contentView.height;
+        self.coverControl.alpha = 0.4;
+    }];
+}
+
+- (void)showInView:(UIView *)view
+{
+    [view addSubview:self];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.contentView.y = IphoneHeight-self.contentView.height;
+        self.coverControl.alpha = 0.4;
     }];
     
 }
@@ -128,8 +139,6 @@ static NSInteger const TitleFont = 16;
         self.contentView.y = IphoneHeight;
         self.coverControl.alpha = 0;
     } completion:^(BOOL finished) {
-       
-        [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         [self removeFromSuperview];
     }];
 }
