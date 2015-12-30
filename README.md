@@ -21,6 +21,19 @@
 
 仅一个必须实现的协议方法：
 
+ ```Objective-C
+- (void)PresentListView:(UIView *)presentListView clickedButtonAtIndex:(NSInteger)buttonIndex;
+ ```
+ 
+ 以下是两个颜色模式的截图，大家也可以修改源代码获得到大家想要的结果
+ 
+ 1、HJNormal
+ 
+![demo](Screenshots/HJNormal.png)
+
+ 1、HJOrange
+ 
+![demo](Screenshots/HJOrange.png)
 
 （更多iOS开发干货，欢迎关注  [微博@3W_狮兄 ](http://weibo.com/hanjunzhao/) ）
 

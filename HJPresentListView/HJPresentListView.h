@@ -15,13 +15,12 @@ typedef enum {
 
 @protocol HJPresentListViewDelegate <NSObject>
 
-@optional
+@required
 
 - (void)PresentListView:(UIView *)presentListView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
-- (void)PresentListView:(UIView *)presentListView clickedButtonTitle:(NSString *)buttonTitle;
 
-@end
+@endop
 
 @interface HJPresentListView : UIView
 
