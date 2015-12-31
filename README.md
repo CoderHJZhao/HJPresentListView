@@ -25,7 +25,16 @@
 - (void)PresentListView:(UIView *)presentListView clickedButtonAtIndex:(NSInteger)buttonIndex;
  ```
  
- 以下是两个颜色模式的截图，大家也可以修改源代码获得到大家想要的结果
+两个可供调用的方法
+
+ ```Objective-C
+- (void)show;
+ ```
+```Objective-C
+- (void)showInView:(UIView *)view;
+```
+ 
+以下是两个颜色模式的截图，大家也可以修改源代码获得到大家想要的结果
  
  1、HJNormal
  
