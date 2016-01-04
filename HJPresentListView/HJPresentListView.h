@@ -19,13 +19,16 @@ typedef enum {
 
 - (void)PresentListView:(UIView *)presentListView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
-
-@endop
+@end
 
 @interface HJPresentListView : UIView
 
 @property (nonatomic, weak)id<HJPresentListViewDelegate> delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame Titles:(NSArray *)titles ColorStyle:(HJColorStyle)colorStyle;
+
+- (void)show;
+
+- (void)showInView:(UIView *)view;
 
 @end
